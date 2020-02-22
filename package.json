@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index",
+    "dev": "SET NODE_ENV=development && nodemon index",
     "lint": "standard --fix",
     "test": "npm run lint && SET NODE_ENV=test && mocha --timeout 2000 --exit"
   },
@@ -34,6 +34,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "mongoose": "^5.9.1",
+    "mongoose-slug-updater": "^3.1.4",
     "multer": "^1.4.2",
     "winston": "^3.2.1"
   },

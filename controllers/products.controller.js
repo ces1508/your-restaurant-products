@@ -4,8 +4,7 @@ class ProductController {
   async create (req, res) {
     try {
       const product = new Product({
-        name: 'product nuevo',
-        slug: 'product-nuevo',
+        name: 'carro rc',
         price: 3020
       })
       await product.save()
