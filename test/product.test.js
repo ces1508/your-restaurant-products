@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Product = require('../models/product.model')
-const { env } = require('../config/')
 const should = require('chai').should()
 const expect = require('chai').expect
+const Product = require('../models/product.model')
+const { env } = require('../config/')
 
 
 before(function beforeProductTest (done) {
@@ -91,7 +91,7 @@ describe('creating products', function describeCreatingTestProduct () {
     try {
       let product = await Product.create(productToSave)
       product = await Product.findByIdAndRemove(product.id)
-      product = await Product.findByIdAndRemove(product.id)
+      product = await Product.findById(product.id)
       expect(product).to.be.null
     } catch (e) {
       throw e
