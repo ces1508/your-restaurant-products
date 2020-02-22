@@ -1,4 +1,4 @@
-const { Product: ProductModel } = require('../models/')
+const { ProductModel } = require('../models/')
 const BaseRepository = require('./base.respository')
 
 class ProductRepository extends BaseRepository {
@@ -7,3 +7,5 @@ class ProductRepository extends BaseRepository {
     this.model = ProductModel
   }
 }
+
+module.exports = ProductRepository

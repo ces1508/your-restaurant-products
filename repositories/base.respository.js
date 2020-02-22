@@ -14,7 +14,7 @@ class BaseRepository {
   }
 
   find (id) {
-    return this.findById(id)
+    return _model.findById(id)
   }
 
   update (id, data) {

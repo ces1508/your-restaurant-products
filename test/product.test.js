@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const Product = require('../models/product.model')
-const { env } = require('../config/')
 const should = require('chai').should()
 const expect = require('chai').expect
+const Product = require('../models/product.model')
+const { env } = require('../config/')
 
 
 before(function beforeProductTest (done) {
