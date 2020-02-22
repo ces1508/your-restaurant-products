@@ -91,7 +91,7 @@ describe('creating products', function describeCreatingTestProduct () {
     try {
       let product = await Product.create(productToSave)
       product = await Product.findByIdAndRemove(product.id)
-      product = await Product.findByIdAndRemove(product.id)
+      product = await Product.findById(product.id)
       expect(product).to.be.null
     } catch (e) {
       throw e
