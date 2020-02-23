@@ -1,7 +1,9 @@
+const { Errors } = require('../helper')
 let _model = null
 
-class BaseRepository {
+class BaseRepository extends Errors {
   constructor (model) {
+    super()
     _model = model
   }
 
@@ -13,16 +15,20 @@ class BaseRepository {
     return _model.find()
   }
 
-  find (id) {
-    return _model.findById(id)
+  async find (id) {
+    if (!id) return this.InternalServer('the id must be sent')
+    const resource = await _model.findById(id)
+    if (!resource) return this.NotFound()
+    return resource
   }
 
   update (id, data) {
+    if (!id) return this.InternalServer('the id must be sent')
     return _model.findByIdAndUpdate(id, data, { new: true })
   }
 
-  delete (id) {
-    return _model.findByIdAndRemove(id)
+  async delete (id) {
+    await _model.findByIdAndRemove(id)
   }
 }
 

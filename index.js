@@ -1,6 +1,8 @@
 const express = require('express')
 const helmet = require('helmet')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+require('express-async-errors')
 
 const routers = require('./routes/index.router')
 const { errorMiddleware } = require('./middlewares')
@@ -22,10 +24,11 @@ mongoose.connect(`mongodb://${env.DATABASE_URI}`, {
 
 const app = express()
 app.use(helmet())
+app.use(bodyParser.json())
 
-app.use('', routers)
+app.use('/', routers)
 
-app.use('*', errorMiddleware)
+app.use(errorMiddleware)
 
 app.listen(env.PORT, err => {
   if (err) {
