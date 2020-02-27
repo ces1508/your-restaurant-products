@@ -35,7 +35,8 @@ class ProductController {
 
   async getAll (req, res) {
     try {
-      const data = await ProductRepository.getAll()
+      const { page } = req.query
+      const data = await ProductRepository.getAll({}, page)
       res.json(data)
     } catch (e) {
       ProductRepository.InternalServer()

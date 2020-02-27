@@ -28,6 +28,12 @@ router.delete('/:id', [
   check('id').isMongoId()
 ], validationMiddleware, ProductController.delete)
 
-router.get('/', ProductController.getAll)
+router.get('/', [
+  check('page').isNumeric().withMessage('page must be a number').optional(),
+  check('page').custom(val => {
+    if (val <= 0) throw new Error('page should be greather than 0')
+    return true
+  }).optional()
+], validationMiddleware, ProductController.getAll)
 
 module.exports = router

@@ -11,8 +11,10 @@ class BaseRepository extends Errors {
     return _model.create(data)
   }
 
-  getAll () {
-    return _model.find()
+  getAll (query = {}, page = 1, perPage = 5) {
+    const limit = perPage
+    const skip = (limit * (page - 1))
+    return _model.find(query).skip(skip).limit(limit)
   }
 
   async find (id) {
