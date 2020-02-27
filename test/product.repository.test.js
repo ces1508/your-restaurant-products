@@ -58,10 +58,13 @@ describe('ProductRepository Tests', () => {
     productEdited.updatedAt.should.not.be.equal(newProduct.updatedAt)
   })
   it('delete', async () => {
-    let newProduct = await ProductRepository.create(productToCreate)
-    await ProductRepository.delete(newProduct.id)
-    let product = await ProductRepository.find(newProduct.id)
-    expect(product).to.be.null
+    try {
+      let newProduct = await ProductRepository.create(productToCreate)
+      await ProductRepository.delete(newProduct.id)
+      await ProductRepository.find(newProduct.id)
+    } catch (e) {
+      e.should.be.an('error')
+    }
   })
   it('find', async () => {
     let newProduct = await ProductRepository.create(productToCreate)
