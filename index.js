@@ -26,6 +26,10 @@ const app = express()
 app.use(helmet())
 app.use(bodyParser.json())
 
+app.use('/graphql', (req, res) => {
+  res.send('hello graphql')
+})
+
 app.use('/', routers)
 
 app.use(errorMiddleware)
