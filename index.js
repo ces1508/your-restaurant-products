@@ -8,7 +8,7 @@ const routers = require('./routes/index.router')
 const { errorMiddleware } = require('./middlewares')
 const { env } = require('./config')
 
-mongoose.connect(`mongodb://${env.DATABASE_URI}`, {
+mongoose.connect(`mongodb://db`, {
   user: env.DATABASE_USERNAME,
   pass: env.DATABASE_PASSWORD,
   dbName: env.DATABASE_NAME,
