@@ -24,8 +24,9 @@ class BaseRepository extends Errors {
     return resource
   }
 
-  update (id, data) {
+  async update (id, data) {
     if (!id) return this.InternalServer('the id must be sent')
+    await this.find(id)
     return _model.findByIdAndUpdate(id, data, { new: true })
   }
 
