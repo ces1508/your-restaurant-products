@@ -39,10 +39,11 @@ class BaseController {
 
   async getAll (req, res) {
     try {
-      const { page } = req.query
-      const data = await _repository.getAll({}, page)
+      const { page, perPage = 20 } = req.query
+      const data = await _repository.getAll({}, page, perPage)
       res.json(data)
     } catch (e) {
+      console.log(e.message)
       _repository.InternalServer()
     }
   }

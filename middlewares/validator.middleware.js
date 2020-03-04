@@ -1,9 +1,17 @@
 const { validationResult } = require('express-validator')
 
-const validatorMiddleware = (req, res, next) => {
+const validateError = (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
   next()
 }
 
-module.exports = validatorMiddleware
+const validateNumberGreatherThanZero = val => {
+  if (val < 1) throw new Error('must be greather than 0')
+  return true
+}
+
+module.exports = {
+  validateError,
+  validateNumberGreatherThanZero
+}
