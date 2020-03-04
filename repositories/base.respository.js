@@ -11,10 +11,13 @@ class BaseRepository extends Errors {
     return _model.create(data)
   }
 
-  getAll (query = {}, page = 1, perPage = 5) {
-    const limit = perPage
+  async getAll (query = {}, page = 1, perPage = 5) {
+    const limit = parseInt(perPage)
     const skip = (limit * (page - 1))
-    return _model.find(query).skip(skip).limit(limit)
+    const amount = await _model.countDocuments()
+    const hasMore = amount > page * perPage
+    const data = await _model.find(query).skip(skip).limit(limit)
+    return { data, hasMore, page }
   }
 
   async find (id) {
